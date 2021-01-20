@@ -4,7 +4,7 @@ import * as jwt from 'jsonwebtoken';
 import {JWT_SECRET} from '../../constants';
 import {AccountService} from './account.service';
 
-@Controller()
+@Controller('/user')
 export class AccountController {
   constructor(private accountService: AccountService) {}
   @Post()
