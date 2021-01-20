@@ -1,3 +1,6 @@
-node_modules
-logs
-uploads
+node_modules/
+dist/
+logs/*
+!.gitkeep
+.vscode/
+.idea/

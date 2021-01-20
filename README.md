@@ -1,2 +1,17 @@
-# order-servers
-点餐系统后台服务（node.js）
+# huzz-koa-template
+quick start a koa project
+
+### Usage
+
+```js
+git clone https://github.com/xhuz/huzz-koa-template.git
+
+npm install
+```
+
+modify environments to config your project
+
+```js
+
+npm run dev
+```
