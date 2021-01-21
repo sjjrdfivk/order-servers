@@ -3,6 +3,7 @@ import {CustomError} from '../../core/error';
 import {User} from '../../entities/user/user.entity';
 import {cryptoPassword} from '../../utils/crypto';
 import {Injectable} from 'koa-route-decors';
+import { crypto } from "../../utils/cryptoJs"
 
 @Injectable()
 export class AccountService {
@@ -22,7 +23,7 @@ export class AccountService {
   }
 
   async verifyPassword(username: string, password: string) {
-    const user = await this.userModel.findAndCheckPassword(username, password);
+    const user = await this.userModel.findAndCheckPassword(username, crypto.decrypt(password));
     if (user) {
       return user;
     } else {

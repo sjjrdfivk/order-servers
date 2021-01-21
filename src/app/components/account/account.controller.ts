@@ -3,6 +3,7 @@ import {Post, Controller} from 'koa-route-decors';
 import * as jwt from 'jsonwebtoken';
 import {JWT_SECRET} from '../../constants';
 import {AccountService} from './account.service';
+import { crypto } from "../../utils/cryptoJs"
 
 @Controller('/user')
 export class AccountController {
@@ -10,7 +11,7 @@ export class AccountController {
   @Post()
   async register(ctx: Context, next: () => Promise<any>) {
     const {username, password, nickname} = ctx.request.body;
-    const result = await this.accountService.insert(username, password, nickname);
+    const result = await this.accountService.insert(username, crypto.decrypt(password), nickname);
     ctx.result = {
       id: result.id,
       username: result.username,

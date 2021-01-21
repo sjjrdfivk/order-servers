@@ -11,6 +11,7 @@ import {responseHandle} from './middleware/response.middleware';
 import {jwt} from './middleware/jwt.middleware';
 import {resolve} from 'path';
 import {connection} from './database';
+import { corsHandler } from './middleware/cors'
 
 export class App {
   private app: Koa;
@@ -29,7 +30,7 @@ export class App {
     const subRouter = await autoRouter(resolve(__dirname, './'));
     router.use(subRouter.routes(), jwt);
     this.app
-      .use(cors())
+      .use(cors(corsHandler))
       .use(loggerHandle)
       .use(errorHandle)
       .use(body({
